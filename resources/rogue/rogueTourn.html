@@ -1,0 +1,144 @@
+{{extend defaultLayout}}
+
+{{block 'css'}}
+<link rel="stylesheet" href="{{pluResPath}}/rogue/rogueTourn.css">
+{{/block}}
+
+{{block 'main'}}
+<div class="header">
+    <div class="header-title">
+        差分宇宙·乐园漫记
+    </div>
+    <div class="header-uid">
+        uid {{uid}}
+    </div>
+    <div class="header-content">
+        <div class="header-content-block">
+            <div class="header-content-block-value">
+                    {{basic.season_level}}
+            </div>
+            <div class="header-content-block-title">
+                拟合等级
+            </div>
+        </div>
+        <div class="header-content-block">
+            <div class="header-content-block-value">
+                {{basic.weekly_score}}/{{basic.weekly_score_max}}
+            </div>
+            <div class="header-content-block-title">
+                本期额外拟合值
+            </div>
+        </div>
+        <div class="header-content-block">
+            <div class="header-content-block-value">
+                <span class="star">X<sub>{{basic.normal_record_brief.common_info_v2.level}}</sub></span>
+                <img class="icon" src="{{basic.normal_record_brief.icon}}" alt="{{basic.normal_record_brief.title}}">
+                <span class="title">{{basic.normal_record_brief.title}}</span>
+            </div>
+            <div class="header-content-block-title">
+                当前星阶
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="reward-section">
+    <div class="reward-title">
+        奖励领取情况
+    </div>
+    <div class="reward-content">
+        <div class="reward-item">
+            <div class="reward-item-name">可能性画廊奖励</div>
+            <div class="reward-item-value">{{basic.possibility_gallery_finished}}/{{basic.possibility_gallery_total}}</div>
+        </div>
+        <div class="reward-item">
+            <div class="reward-item-name">稳态数组奖励</div>
+            <div class="reward-item-value">{{basic.season_task_finished}}/{{basic.season_task_total}}</div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <div class="section-title">常规演算</div>
+    </div>
+    <div class="section-content">
+        {{if basic.normal_record_brief.common_info_v2.exist_data}}
+        <div class="latest-team">
+            <div class="latest-team-header">
+                <div class="latest-team-info">
+                    <div class="latest-team-title">最新通关队伍</div>
+                    <div class="latest-team-time">挑战时间：{{normal_detail.records[0].format_finish_time}}</div>
+                </div>
+                <div class="latest-team-stars">X<sub>{{normal_detail.records[0].common_info_v2.level}}</sub></div>
+            </div>
+            <div class="latest-team-avatars">
+                {{each normal_detail.records[0].final_lineup avatar}}
+                <div class="avatar-box">
+                    <div class="avatar rarity{{avatar.rarity}}">
+                        <span class="life life{{ avatar.rank }}">{{ avatar.rank }}魂</span>
+                        <div>
+                            <img class="avatar-img" src="{{avatar.icon}}" />
+                        </div>
+                        <div class="avatar-inner"></div>
+                        <div class="avatar-banner">
+                            等级 {{avatar.level}}
+                        </div>
+                        <div class="avatar-element" style="border-color: var(--borderColor-lightning);">
+                            <img src="{{pluResPath}}/common/element/{{avatar.element}}.png" />
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <div class="section-title">周期演算</div>
+    </div>
+    <div class="section-content">
+        <div class="weekly-content">
+            <div class="weekly-reward">
+                <div class="weekly-reward-title">本期首通奖励</div>
+                <div class="weekly-reward-status">{{basic.finished_weekly ? '已领取' : '未领取'}}</div>
+            </div>
+            <div class="weekly-difficulty">
+                <div class="weekly-difficulty-title">本期最新通关难度</div>
+                <div class="weekly-difficulty-value">{{basic.weekly_record_brief.title || '暂无战绩'}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="logo">
+    {{@sys.createdby}}
+</div>
+<style>
+    .header {
+        background-image: url('{{pluResPath}}/rogue/bg.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        /*width: 784px;*/
+        height: 220px;
+    }
+    .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("{{pluResPath}}/rogue/oblivious_bg@2x.7b5d7b38.png") no-repeat;
+        background-size: 100% auto;
+        filter: hue-rotate(280deg);
+        mix-blend-mode: screen;
+        background-color: #100A0E;
+        opacity: 0.9;
+        z-index: -1;
+    }
+</style>
+{{/block}}

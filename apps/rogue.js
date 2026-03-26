@@ -23,7 +23,23 @@ export class Rogue extends plugin {
         {
           reg: `^${rulePrefix}(寰宇)?蝗灾`,
           fnc: 'rogue_locust'
-        }
+        },
+        {
+          reg: `^${rulePrefix}(黄金与机械|黄金|机械|黄金机械)`,
+          fnc: 'rogue_nous'
+        },
+        {
+          reg: `^${rulePrefix}(不可知域)`,
+          fnc: 'rogue_magic'
+        },
+        {
+          reg: `^${rulePrefix}(差分宇宙|差分)`,
+          fnc: 'rogue_tourn'
+        },
+        {
+          reg: `^${rulePrefix}(货币战争|货币)`,
+          fnc: 'grid_fight'
+        },
       ]
     })
     this.User = new User(e)
@@ -144,6 +160,82 @@ export class Rogue extends plugin {
     await runtimeRender(e, '/rogue/rogue_locust.html', data, {
       scale: 1.4
     })
+  }
+
+  async rogue_nous (e) {
+
+  }
+
+  async rogue_magic (e) {
+
+  }
+
+  // 时间格式化函数
+  formatTime(timeObj) {
+    if (!timeObj) return ''
+    const { year, month, day, hour, minute, second } = timeObj
+    return `${year}.${String(month).padStart(2, '0')}.${String(day).padStart(2, '0')} ${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:${String(second).padStart(2, '0')}`
+  }
+
+  async rogue_tourn (e) {
+    this.e.isSr = true
+    this.isSr = true
+    let user = this.e.user_id
+    let ats = e.message.filter(m => m.type === 'at')
+    if (ats.length > 0 && !e.atBot) {
+      user = ats[0].qq
+      this.e.user_id = user
+      this.User = new User(this.e)
+    }
+    let uid = e.msg.match(/\d+/)?.[0]
+    await this.miYoSummerGetUid()
+    uid = uid || (await redis.get(`STAR_RAILWAY:UID:${user}`)) || this.e.user?.getUid('sr')
+    if (!uid) {
+      return e.reply('未绑定uid，请发送#星铁绑定uid进行绑定')
+    }
+    let ck = await getCk(e)
+    if (!ck || Object.keys(ck).filter(k => ck[k].ck).length === 0) {
+      let ckArr = GsCfg.getConfig('mys', 'pubCk') || []
+      ck = ckArr[0]
+    }
+    if (!ck) {
+      await e.reply(`尚未绑定Cookie,${this.app2config.docs}`)
+      return false
+    }
+    let api = new MysSRApi(uid, ck)
+    let sdk = api.getUrl('getFp')
+    let fpRes = await fetch(sdk.url, { headers: sdk.headers, method: 'POST', body: sdk.body })
+    fpRes = await fpRes.json()
+    let deviceFp = fpRes?.data?.device_fp
+    if (deviceFp) {
+      await redis.set(`STARRAIL:DEVICE_FP:${uid}`, deviceFp, { EX: 86400 * 7 })
+    }
+    const { url, headers } = api.getUrl('srRogueTourn', { deviceFp })
+    delete headers['x-rpc-page']
+    logger.debug({ url, headers })
+    let res = await fetch(url, {
+      headers
+    })
+
+    let cardData = await res.json()
+    cardData = await api.checkCode(this.e, cardData, 'srRogueTourn', { deviceFp })
+    if (cardData.retcode !== 0) {
+      return false
+    }
+    let data = Object.assign(cardData.data, { uid })
+    
+    // 格式化时间
+    if (data.normal_detail?.records && data.normal_detail.records.length > 0) {
+      data.normal_detail.records[0].format_finish_time = this.formatTime(data.normal_detail.records[0].finish_time)
+    }
+    
+    await runtimeRender(e, '/rogue/rogueTourn.html', data, {
+      scale: 1.4
+    })
+  }
+
+  async grid_fight (e) {
+
   }
 
   async miYoSummerGetUid () {

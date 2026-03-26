@@ -138,6 +138,30 @@ export default class SRApiTool {
           url: `${hostRecord}game_record/app/hkrpg/api/rogue_locust`,
           query: `need_detail=true&role_id=${this.uid}&server=${this.server}`
         },
+        srRogueNous: {
+          url: `${hostRecord}game_record/app/hkrpg/api/rogue_nous`,
+          query: `need_detail=true&role_id=${this.uid}&server=${this.server}`
+        },
+        srRogueMagic: {
+          url: `${hostRecord}game_record/app/hkrpg/api/rogue_magic`,
+          query: `role_id=${this.uid}&server=${this.server}`
+        }, // need_detail=true&
+        srPeriodicAct: {
+          url: `${hostRecord}game_record/app/hkrpg/api/periodic_act`,
+          query: `role_id=${this.uid}&server=${this.server}`
+        },
+        srPeriodicAct: {
+          url: `${hostRecord}game_record/app/hkrpg/api/periodic_act`,
+          query: `role_id=${this.uid}&server=${this.server}`
+        },
+        srRogueTourn: {
+          url: `${hostRecord}game_record/app/hkrpg/api/rogue_tourn`,
+          query: `need_detail=true&role_id=${this.uid}&server=${this.server}`
+        },
+        srGridFight: {
+          url: `${hostRecord}game_record/app/hkrpg/api/grid_fight`,
+          query: `role_id=${this.uid}&server=${this.server}`
+        },
         srPayAuthKey: {
           url: `${host}binding/api/genAuthKey`,
           body: {

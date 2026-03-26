@@ -1,0 +1,364 @@
+.container {
+    padding: 30px 30px 20px 20px;
+    width: 784px;
+    transform: none;
+    font-family: 'SR', serif;
+    position: relative;
+}
+
+.header-title {
+    font-family: 'SR', serif;
+    color: #ecd381;
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    padding-top: 20px;
+}
+
+.header-uid {
+    font-family: 'SR', serif;
+    color: #bba86a;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.header-content {
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 30px;
+    margin-right: 30px;
+    background: rgba(11, 12, 17, 0.5);
+    display: flex;
+}
+
+.header-content-block {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 33.33%;
+}
+
+.header-content-block-title {
+    padding-top: 10px;
+    text-align: center;
+    color: #cacaca;
+    font-size: 20px;
+}
+
+.header-content-block-value {
+    text-align: center;
+    color: #fdfdfd;
+    font-size: 28px;
+    height: 40px;
+}
+
+.logo {
+    font-size: 16px;
+    font-family: "tttgbnumber";
+    color: #ecd381;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.avatar-box {
+    margin: 3px 6px 6px 1px;
+}
+
+.avatar {
+    margin-top: 5px;
+    margin-left: 15px;
+    background: #cb9a6d;
+    width: 100px;
+    border-radius: 0 15px 0 0;
+    /*height: 90px;*/
+    position: relative;
+    overflow: hidden;
+}
+
+.rarity5 {
+    background: linear-gradient(45deg, #c59a65, #894f4a);
+}
+
+.rarity4 {
+    background: linear-gradient(45deg, #7f54c0, #3d3d63);
+}
+
+.avatar-inner {
+    position: absolute;
+    left: 4px;
+    top: 3px;
+    border-radius: 0 15px 0 0;
+    border: #fffdfd48 3px solid;
+    width: 94px;
+    height: 100px;
+}
+
+.life0 {
+  background-color: #606060;
+}
+
+.life1 {
+  background-color: #89cb26;
+}
+
+.life2 {
+  background-color: #d1949e;
+}
+
+.life3 {
+  background-color: #1aa1d7;
+}
+
+.life4 {
+  background-color: #F08080;
+}
+
+.life5 {
+  background-color: #7B68EE;
+}
+
+.life6 {
+  background-color: #ff5222;
+}
+
+.avatar .life {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 101;
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+    border-radius: 2px;
+    padding: 0px 3px;
+    border-radius: 3px;
+    font-family: "tttgbnumber";
+}
+
+.avatar-img {
+    width: 100px;
+    position: relative;
+    z-index: 100;
+}
+
+.avatar-banner {
+    position: absolute;
+    top: 95px;
+    background: black;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    z-index: 101;
+}
+
+.avatar-element {
+    --borderColor-fire: #c5523a;
+    --borderColor-ice: #4089bb;
+    --borderColor-imaginary: #f1d85e;
+    --borderColor-lightning: #a042be;
+    --borderColor-physical: #857f87;
+    --borderColor-quantum: #4b52a1;
+    --borderColor-wind: #349972;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    border: 1px solid;
+    z-index: 101;
+    background: black;
+    transform: rotate(45deg);
+    overflow: hidden;
+}
+
+.avatar-element img {
+    transform: rotate(-45deg);
+    width: 20px;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+}
+
+.reward-section {
+    margin: 10px 10px;
+    background: rgba(11, 12, 17, 0.5);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.reward-title {
+    color: #cacaca;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+.reward-content {
+    background: rgba(230, 230, 228, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.reward-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(201, 202, 207, 0.2);
+}
+
+.reward-item:last-child {
+    border-bottom: none;
+}
+
+.reward-item-name {
+    color: #cacaca;
+    font-size: 16px;
+}
+
+.reward-item-value {
+    color: #fdfdfd;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.section {
+    margin: 10px 10px;
+    background: rgba(11, 12, 17, 0.5);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(201, 202, 207, 0.2);
+}
+
+.section-title {
+    color: #cacaca;
+    font-size: 18px;
+}
+
+.section-action {
+    color: #817c8d;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.section-content {
+    padding-top: 10px;
+}
+
+.current-rank {
+    margin-bottom: 20px;
+}
+
+.current-rank-title {
+    color: #cacaca;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.current-rank-value {
+    display: flex;
+    align-items: center;
+}
+
+.star {
+    color: #ecd381;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.icon {
+    width: 26px;
+    height: 26px;
+    transform: scale(2.0);
+}
+
+.title {
+    color: #fdfdfd;
+    font-size: 28px;
+}
+
+.latest-team {
+    background: rgba(230, 230, 228, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.latest-team-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.latest-team-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.latest-team-title {
+    color: #cacaca;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.latest-team-time {
+    color: #AAAAAA;
+    font-size: 12px;
+}
+
+.latest-team-stars {
+    color: #ecd381;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.latest-team-avatars {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.weekly-content {
+    background: rgba(230, 230, 228, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.weekly-reward,
+.weekly-difficulty {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(201, 202, 207, 0.2);
+}
+
+.weekly-reward:last-child,
+.weekly-difficulty:last-child {
+    border-bottom: none;
+}
+
+.weekly-reward-title,
+.weekly-difficulty-title {
+    color: #cacaca;
+    font-size: 16px;
+}
+
+.weekly-reward-status,
+.weekly-difficulty-value {
+    color: #fdfdfd;
+    font-size: 16px;
+}
