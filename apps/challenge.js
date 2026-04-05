@@ -38,7 +38,7 @@ export class Challenge extends plugin {
           fnc: 'challengeBoss'
         },
         {
-          reg: `^${rulePrefix}(上期|本期)?(简易)?(异乡|异相|异向|仲裁|异相仲裁)`,
+          reg: `^${rulePrefix}(往期|上期|本期)?(简易)?(异乡|异相|异向|仲裁|异相仲裁)`,
           fnc: 'challengePeak'
         }
       ]
@@ -50,6 +50,8 @@ export class Challenge extends plugin {
     this.e.isSr = true
     this.isSr = true
     const simple = this.e.msg.match('简易')
+    const recent = this.e.msg.match('往期')
+    const last = this.e.msg.match('上期')
 
     if (all !== true) {
       uid = await this.userUid(e)
@@ -57,10 +59,10 @@ export class Challenge extends plugin {
     }
 
     let scheduleType = '1'
-    if (this.e.msg.match('上期')) {
+    if (last) {
       scheduleType = '2'
     }
-    if (this.e.msg.match('上期') && challengeType == 3) {
+    if ((recent || last) && challengeType == 3) {
       scheduleType = '3'
     }
 
@@ -117,6 +119,12 @@ export class Challenge extends plugin {
     // }
     const data = { ...challengeData.data }
 
+    if (recent && challengeType == 3) return {
+      data,
+      uid,
+      challengeType,
+      type: scheduleType
+    }
     // 最新更新的深渊
     data.currentType = this.getCurrentChallengeType()
     // 起止日期要分开处理
@@ -129,7 +137,7 @@ export class Challenge extends plugin {
       data.beginTime = this.timeFormat(data.begin_time)
       data.endTime = this.timeFormat(data.end_time)
     } else {
-      data.peak_records = this.e.msg.match('上期') ? data.challenge_peak_records[1] : data.challenge_peak_records[0]
+      data.peak_records = last ? data.challenge_peak_records[1] : data.challenge_peak_records[0]
       data.beginTime = this.timeFormat(data.peak_records.group.begin_time)
       data.endTime = this.timeFormat(data.peak_records.group.end_time)
     }
@@ -154,14 +162,14 @@ export class Challenge extends plugin {
     } else {
       // 异相仲裁
       // 王棋
-      if (data.challenge_peak_records[0].boss_record) {
-        data.challenge_peak_records[0].boss_record.challengeTime =
-          this.timeFormat(data.challenge_peak_records[0].boss_record.challenge_time, 'YYYY.MM.DD HH:mm')
+      if (data.peak_records.boss_record) {
+        data.peak_records.boss_record.challengeTime =
+          this.timeFormat(data.peak_records.boss_record.challenge_time, 'YYYY.MM.DD HH:mm')
       }
-      
+
       // 骑士
-      data.challenge_peak_records[0].mob_records = 
-        _.map(data.challenge_peak_records[0].mob_records, (record) => {
+      data.peak_records.mob_records = 
+        _.map(data.peak_records.mob_records, (record) => {
           return {
             ...record,
             ...(record.challenge_time && {
@@ -189,6 +197,30 @@ export class Challenge extends plugin {
     }
   }
 
+  recentPeak (data) {
+    // 异相仲裁
+    data.beginTime = this.timeFormat(data.group.begin_time)
+    data.endTime = this.timeFormat(data.group.end_time)
+    // 王棋
+    if (data.boss_record) {
+      data.boss_record.challengeTime =
+        this.timeFormat(data.boss_record.challenge_time, 'YYYY.MM.DD HH:mm')
+    }
+
+    // 骑士
+    data.mob_records = 
+      _.map(data.mob_records, (record) => {
+        return {
+          ...record,
+          ...(record.challenge_time && {
+            challengeTime: this.timeFormat(record.challenge_time, 'YYYY.MM.DD HH:mm')
+          })
+        }
+      })
+
+    return { ...data }
+  }
+
   async challengeForgottenHall (e) {
     await e.reply('正在获取忘却之庭数据，请稍后……')
     let res = await this.queryChallenge(e, 2)
@@ -212,11 +244,25 @@ export class Challenge extends plugin {
 
   async challengePeak (e) {
     await e.reply('正在获取异相仲裁数据，请稍后……')
+    let tplFile = '/challenge/index_peak.html'
     let res = await this.queryChallenge(e, 3)
     if (!res) return false
+    if (e.msg.match('往期')) {
+      tplFile = '/challenge/peak_recent.html'
+      let present = this.recentPeak(res.data.challenge_peak_records[0])
+      let last = this.recentPeak(res.data.challenge_peak_records[1])
+      let early = this.recentPeak(res.data.challenge_peak_records[2])
+
+      res = {
+        ...res,
+        present,
+        last,
+        early
+      }
+    }
     // 三路深渊的逻辑还不太一样，这里单独渲染
     // index_peak
-    await runtimeRender(e, '/challenge/index_peak.html', res)
+    await runtimeRender(e, `${tplFile}`, res)
   }
 
   async challenge (e) {
