@@ -37,15 +37,15 @@ export class Rogue extends plugin {
           fnc: 'rogue_tourn'
         },
         {
-          reg: `^${rulePrefix}常规(差分(宇宙)?|演算)(战绩|回顾)?(一|二|三)?`,
+          reg: `^${rulePrefix}常规(差分(宇宙)?|演算)(战绩|回顾|战报|记录)?(一|二|三)?`,
           fnc: 'rogue_tourn_normal'
         },
         {
-          reg: `^${rulePrefix}(本期|上期|本周|上周)(差分(宇宙)?|演算)(战绩|回顾)?(一|二|三)?`,
+          reg: `^${rulePrefix}(本期|上期|本周|上周)(差分(宇宙)?|演算)(战绩|回顾|战报|记录)?(一|二|三)?`,
           fnc: 'rogue_tourn_week'
         },
         {
-          reg: `^${rulePrefix}周期(差分(宇宙)?|演算)(战绩|回顾)?(一|二|三)?`,
+          reg: `^${rulePrefix}周期(差分(宇宙)?|演算)(战绩|回顾|战报|记录)?(一|二|三)?`,
           fnc: 'rogue_tourn_week_help'
         }
       ]

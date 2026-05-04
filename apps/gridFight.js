@@ -20,7 +20,7 @@ export class GridFight extends plugin {
           fnc: 'grid_fight'
         },
         {
-          reg: `^${rulePrefix}(货币(战争)?|币战)(战绩|回顾)(一|二|三|四|五|六|七|八|九|十)?$`,
+          reg: `^${rulePrefix}(货币(战争)?|币战)(战绩|回顾|战报|记录)(一|二|三|四|五|六|七|八|九|十)?$`,
           fnc: 'grid_fight_archive'
         }
       ]
