@@ -474,17 +474,17 @@
 
 .room-name {
     color: #fdfdfd;
-    font-size: 10px;
+    font-size: 14px;
     text-align: center;
     transform: scale(0.9);
 }
 
 .room-level {
     position: absolute;
-    top: 2px;
+    bottom: 2px;
     right: 3px;
     color: #ecd381;
-    font-size: 10px;
+    font-size: 14px;
     transform: scale(0.8);
 }
 
