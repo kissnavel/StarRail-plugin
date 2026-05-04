@@ -84,12 +84,20 @@ export const helpList = [
         desc: '模拟宇宙信息(可带uid查询)'
       }, {
         icon: 107,
+        title: '*差分',
+        desc: '差分宇宙信息'
+      }, {
+        icon: 107,
         title: '*常规差分(一|二|三)?',
         desc: '常规演算最近三场记录'
       }, {
         icon: 107,
-        title: '*货币战争',
+        title: '*货币',
         desc: '货币战争信息'
+      }, {
+        icon: 107,
+        title: '*货币(战绩|回顾)(一|二|三|四|五|六|七|八|九|十)?',
+        desc: '货币战争战绩'
       }, {
         icon: 107,
         title: '*寰宇蝗灾',

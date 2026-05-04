@@ -1,0 +1,286 @@
+{{extend defaultLayout}}
+
+{{block 'css'}}
+<link rel="stylesheet" href="{{pluResPath}}/gridFight/gridFight.css">
+<link rel="stylesheet" href="{{pluResPath}}/gridFight/gridFightArchive.css">
+{{/block}}
+
+{{block 'main'}}
+<div class="header">
+    <div class="header-title">
+        货币战争·战绩回顾
+    </div>
+    <div class="header-uid">
+        uid {{uid}}
+    </div>
+    <div class="header-content">
+        <div class="header-content-block">
+            <div class="header-content-block-value">
+                {{grid_fight_brief.season_level}}
+            </div>
+            <div class="header-content-block-title">
+                晋升等级
+            </div>
+        </div>
+        <div class="header-content-block">
+            <div class="header-content-block-value">
+                {{grid_fight_brief.weekly_score_cur}}/{{grid_fight_brief.weekly_score_max}}
+            </div>
+            <div class="header-content-block-title">
+                本期积分
+            </div>
+        </div>
+        <div class="header-content-block">
+            <div class="header-content-block-value rank-column">
+                <img class="rank-icon-bg" src="{{grid_fight_brief.division.icon_with_bg}}" alt="">
+                <div class="rank-badge">A{{grid_fight_brief.division.level * 1 - 1}}</div>
+                <span class="rank-name">{{grid_fight_brief.division.name_with_num}}</span>
+            </div>
+            <div class="header-content-block-title">
+                职级
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-header-title">挑战记录 {{index_of_archive}}</div>
+    <div class="record-meta-bar">
+        <div class="meta-inner-container">
+            <div class="meta-left">
+                <div class="meta-row-1">
+                    <div class="rank-badge-mini">A{{record.brief.division.level * 1 - 1}}</div>
+                    <img src="{{record.brief.division.icon}}" class="mini-division-icon">
+                    <span class="division-name-text">{{record.brief.division.name_with_num}}</span>
+                    <span class="game-mode-tag">{{record.brief.archive_type === 'ArchiveTypePromotion' ? '快速博弈' : '标准博弈'}}</span>
+                </div>
+                <div class="meta-row-2">
+                    {{record.brief.archive_time}}
+                </div>
+            </div>
+            <div class="meta-right">
+                {{record.brief.archive_rank.slice(20)}}
+            </div>
+        </div>
+    </div>
+
+    <div class="section-body">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <img src="{{pluResPath}}/gridFight/gridFight/heart.webp" class="stat-img">
+                <div class="stat-info">
+                    <div class="stat-name">小队生命值</div>
+                    <div class="stat-val">{{record.brief.remain_hp}}</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <img src="{{pluResPath}}/gridFight/gridFight/money.png" class="stat-img">
+                <div class="stat-info">
+                    <div class="stat-name">总经济</div>
+                    <div class="stat-val">{{record.brief.total_coin}}</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <img src="{{pluResPath}}/gridFight/gridFight/money.png" class="stat-img">
+                <div class="stat-info">
+                    <div class="stat-name">阵容价值</div>
+                    <div class="stat-val">{{record.brief.lineup_coin}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="roles-area">
+            <div class="roles-group">
+                <div class="roles-group-header">
+                    <img src="{{pluResPath}}/gridFight/gridFight/front.webp" class="group-logo">
+                    <span class="group-name">前台</span>
+                </div>
+                <div class="roles-grid">
+                    {{each record.lineup.front_roles role}}
+                    <div class="chess-card-container">
+                        <div class="chess-box" data-rarity="{{role.rarity}}">
+                            <div class="chess-main">
+                                <img src="{{role.icon}}" class="chess-img">
+                                {{if role.is_trial}}<div class="trial-flag">试用</div>{{/if}}
+                                <div class="chess-stars">
+                                    <% for (var i=0; i < role.star; i++){ %>
+                                        <img src="{{pluResPath}}/gridFight/gridFight/star.png" class="star-mini">
+                                        <% } %>
+                                </div>
+                            </div>
+                            <div class="chess-bar"></div>
+                        </div>
+                        <div class="chess-equipments">
+                            {{each role.equip_list.slice(0,3) equip}}
+                            <div class="equip-icon-box">
+                                <img src="{{equip.icon}}" class="equip-icon">
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="roles-group">
+                <div class="roles-group-header">
+                    <img src="{{pluResPath}}/gridFight/gridFight/front.webp" class="group-logo inverted">
+                    <span class="group-name">后台</span>
+                </div>
+                <div class="roles-grid">
+                    {{each record.lineup.back_roles role}}
+                    <div class="chess-card-container">
+                        <div class="chess-box" data-rarity="{{role.rarity}}">
+                            <div class="chess-main">
+                                <img src="{{role.icon}}" class="chess-img">
+                                {{if role.is_trial}}<div class="trial-flag">试用</div>{{/if}}
+                                <div class="chess-stars">
+                                    <% for (var i=0; i < role.star; i++){ %>
+                                        <img src="{{pluResPath}}/gridFight/gridFight/star.png" class="star-mini">
+                                        <% } %>
+                                </div>
+                            </div>
+                            <div class="chess-bar"></div>
+                        </div>
+                        <div class="chess-equipments">
+                            {{each role.equip_list.slice(0,3) equip}}
+                            <div class="equip-icon-box">
+                                <img src="{{equip.icon}}" class="equip-icon">
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bond Info -->
+<div class="archive-section">
+    <div class="archive-section-title">羁绊信息</div>
+    <div class="item-list">
+        {{each record.lineup.trait_list trait}}
+        <div class="bond-info-item">
+            <div class="bond-icon-container quality-{{trait.quality}}">
+                <img src="{{trait.icon}}" class="item-icon">
+                <div class="bond-count">{{trait.trait_count}}</div>
+            </div>
+            <div class="item-info">
+                <div class="item-name">{{trait.trait_name}}</div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<!-- Investment Environment -->
+<div class="archive-section">
+    <div class="archive-section-title">投资环境</div>
+    <div class="item-list flex-column">
+        {{each record.lineup.portal_list portal}}
+        <div class="investment-environment-item">
+            <div class="environment-icon-container">
+                <img src="{{portal.icon}}" class="item-icon">
+            </div>
+            <div class="item-name">{{portal.name}}</div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<!-- Investment Strategy -->
+<div class="archive-section">
+    <div class="archive-section-title">投资策略</div>
+    <div class="item-list">
+        {{each record.lineup.augment_list augment}}
+        <div class="investment-strategy-item">
+            <div class="strategy-icon-container quality-{{augment.quality}}">
+                <img src="{{augment.icon}}" class="item-icon">
+            </div>
+            <div class="item-info">
+                <div class="item-name">{{augment.name}}</div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<!-- Damage Statistics -->
+{{if damageData && damageData.length > 0}}
+<div class="archive-section">
+    <div class="archive-section-title">伤害统计</div>
+    <div class="damage-chart">
+        {{each damageData d}}
+        <div class="damage-row">
+            <div class="damage-entity-container">
+                {{if d.type === 'DamageTypeTrait'}}
+                <div class="bond-icon-container quality-{{d.entity.quality}} damage-scale">
+                    <img src="{{d.entity.icon}}" class="item-icon">
+                    <div class="bond-count">{{d.entity.trait_count}}</div>
+                </div>
+                {{else}}
+                <div class="chess-card-container damage-scale">
+                    <div class="chess-box" data-rarity="{{d.entity.rarity}}">
+                        <div class="chess-main">
+                            <img src="{{d.entity.icon}}" class="chess-img">
+                            {{if d.entity.is_trial}}<div class="trial-flag">试用</div>{{/if}}
+                            <div class="chess-stars">
+                                <% for (var i=0; i < d.entity.star; i++){ %>
+                                    <img src="{{pluResPath}}/gridFight/gridFight/star.png" class="star-mini">
+                                    <% } %>
+                            </div>
+                        </div>
+                        <div class="chess-bar"></div>
+                    </div>
+                    <div class="chess-equipments">
+                        {{each d.entity.equip_list.slice(0,3) equip}}
+                        <div class="equip-icon-box">
+                            <img src="{{equip.icon}}" class="equip-icon">
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+            <div class="damage-bar-container">
+                <div class="damage-value">{{d.damageStr}}</div>
+                <div class="damage-bar" style="width: {{d.percent}}%;"></div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{/if}}
+
+<div class="logo">
+    {{@sys.createdby}}
+</div>
+
+<style>
+    .header {
+        background-image: url('{{pluResPath}}/gridFight/entry-bg-top.253f0fd5.webp');
+        background-size: cover;
+        background-position: top;
+        height: 250px;
+        position: relative;
+    }
+
+    .meta-inner-container {
+        background-image: url('{{pluResPath}}/gridFight/record-header-bg--home.c09dc5c8.png');
+    }
+
+    /* Icon Backgrounds */
+    .bond-icon-container.quality-0 { background-image: url('{{pluResPath}}/gridFight/gridFight/bond_bronze.png'); }
+    .bond-icon-container.quality-1 { background-image: url('{{pluResPath}}/gridFight/gridFight/bond_silver.png'); }
+    .bond-icon-container.quality-2 { background-image: url('{{pluResPath}}/gridFight/gridFight/bond_gold.png'); }
+    .bond-icon-container.quality-3 { background-image: url('{{pluResPath}}/gridFight/gridFight/bond_rainbow.png'); }
+    .bond-icon-container.quality-4 { background-image: url('{{pluResPath}}/gridFight/gridFight/bond_unique.png'); }
+
+    .environment-icon-container { background-image: url('{{pluResPath}}/gridFight/gridFight/environment.png'); }
+
+    .strategy-icon-container.quality-1 { background-image: url('{{pluResPath}}/gridFight/gridFight/strategy_silver.png'); }
+    .strategy-icon-container.quality-2 { background-image: url('{{pluResPath}}/gridFight/gridFight/strategy_gold.png'); }
+    .strategy-icon-container.quality-3 { background-image: url('{{pluResPath}}/gridFight/gridFight/strategy-icon-bg-3.b1898bcc.webp'); }
+</style>
+{{/block}}
