@@ -88,8 +88,12 @@ export const helpList = [
         desc: '差分宇宙信息'
       }, {
         icon: 107,
-        title: '*常规差分(一|二|三)?',
+        title: '*常规演算(一|二|三)?',
         desc: '常规演算最近三场记录'
+      }, {
+        icon: 107,
+        title: '*(本期|上期)演算(一|二|三)?',
+        desc: '周期演算最近三场记录'
       }, {
         icon: 107,
         title: '*货币',

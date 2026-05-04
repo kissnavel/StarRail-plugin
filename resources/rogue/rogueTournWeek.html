@@ -1,0 +1,225 @@
+{{extend defaultLayout}}
+
+{{block 'css'}}
+<link rel="stylesheet" href="{{pluResPath}}/rogue/rogueTournWeek.css">
+{{/block}}
+
+{{block 'main'}}
+<div class="header">
+    <div class="header-title">
+        差分宇宙·周期演算 ({{periodName}})
+    </div>
+    <div class="header-uid">
+        uid {{uid}}
+    </div>
+    <div class="header-content">
+        <div class="header-content-block">
+            <div class="header-content-block-value">
+                {{basic.season_level}}
+            </div>
+            <div class="header-content-block-title">
+                拟合等级
+            </div>
+        </div>
+        <div class="header-content-block">
+            <div class="header-content-block-value">
+                {{basic.weekly_score}}/{{basic.weekly_score_max}}
+            </div>
+            <div class="header-content-block-title">
+                本期额外拟合值
+            </div>
+        </div>
+        <div class="header-content-block">
+            <div class="header-content-block-value">
+                <span class="star">X<sub>{{basic.normal_record_brief.common_info_v2.level}}</sub></span>
+                <img class="icon" src="{{basic.normal_record_brief.icon}}" alt="{{basic.normal_record_brief.title}}">
+                <span class="title">{{basic.normal_record_brief.title}}</span>
+            </div>
+            <div class="header-content-block-title">
+                当前星阶
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section weekly-info">
+    <div class="weekly-name">{{weekly_name}}</div>
+    <div class="weekly-buffs">
+        {{each weekly_buff_desc desc}}
+        <div class="weekly-buff-item">
+            <div class="weekly-buff-icon"></div>
+            <div class="weekly-buff-desc">{{@desc}}</div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-header-title">挑战记录 {{index_of_archive}}</div>
+    <div class="section-header">
+        <div class="section-title">探索队伍</div>
+    </div>
+    <div class="section-content">
+        <div class="latest-team">
+            <div class="latest-team-header">
+                <div class="latest-team-info">
+                    <div class="latest-team-time">挑战时间：{{record.format_finish_time}}</div>
+                </div>
+                <div class="latest-team-stars">X<sub>{{record.common_info_v2.level}}</sub></div>
+            </div>
+            <div class="latest-team-avatars">
+                {{each record.final_lineup avatar}}
+                <div class="avatar-box">
+                    <div class="avatar rarity{{avatar.rarity}}">
+                        <span class="life life{{ avatar.rank }}">{{ avatar.rank }}魂</span>
+                        <div>
+                            <img class="avatar-img" src="{{avatar.icon}}" />
+                        </div>
+                        <div class="avatar-inner"></div>
+                        <div class="avatar-banner">
+                            等级 {{avatar.level}}
+                        </div>
+                        <div class="avatar-element" style="border-color: var(--borderColor-{{avatar.element}});">
+                            <img src="{{pluResPath}}/common/element/{{avatar.element}}.png" />
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <div class="section-title">面具</div>
+    </div>
+    <div class="section-content">
+        <div class="persona-content">
+            <img class="persona-icon" src="{{record.persona_style.icon}}" />
+            <div class="persona-info">
+                <div class="persona-title">{{record.persona_style.title}} Lv.{{record.persona_style.style_level}}</div>
+                <div class="persona-desc">{{@record.persona_style.desc}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{if record.hex_miracles && record.hex_miracles.length > 0}}
+<div class="section">
+    <div class="section-header">
+        <div class="section-title">加权奇物</div>
+    </div>
+    <div class="section-content">
+        <div class="item-grid-8">
+            {{each record.hex_miracles item}}
+            <div class="curio-item curio-rank-hex">
+                <img class="curio-icon" src="{{item.icon}}" title="{{item.name}}" />
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{/if}}
+
+{{if record.formula_list && record.formula_list.length > 0}}
+<div class="section">
+    <div class="section-header">
+        <div class="section-title">已展开方程</div>
+    </div>
+    <div class="section-content">
+        <div class="formula-list">
+            {{each record.formula_list item}}
+            <div class="formula-item formula-cat-{{item.formula_category}}">
+                <div class="formula-icons {{if !item.sub_icon}}no-sub{{/if}}">
+                    <img class="formula-icon-main" src="{{item.icon}}" />
+                    {{if item.sub_icon}}
+                    <img class="formula-icon-sub" src="{{item.sub_icon}}" />
+                    {{/if}}
+                </div>
+                <div class="formula-name">{{item.name}}</div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{/if}}
+
+<div class="section">
+    <div class="section-header">
+        <div class="section-title">获得祝福</div>
+        <div class="section-value">{{buffs_count}}</div>
+    </div>
+    <div class="section-content">
+        <div class="buff-list">
+            {{each record.buffs group}}
+            <div class="buff-item">
+                <img class="buff-icon" src="{{pluResPath}}/common/rogue/{{group.base_type.name.slice(1,3)}}.webp" />
+                <div class="buff-count">{{group.items.length}}</div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <div class="section-title">获得奇物</div>
+    </div>
+    <div class="section-content">
+        <div class="item-grid-8">
+            {{each record.miracles item}}
+            <div class="curio-item curio-rank-{{item.rank}}">
+                <img class="curio-icon" src="{{item.icon}}" title="{{item.name}}" />
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <div class="section-title">沿途站点</div>
+    </div>
+    <div class="section-content">
+        <div class="item-grid-8">
+            {{each record.room_card_list room}}
+            <div class="room-item bg-color-{{room.bg_color}}">
+                <img class="room-icon" src="{{room.icon_path}}" />
+                <div class="room-name">{{room.type_name}}</div>
+                <div class="room-level">{{room.level}}</div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<div class="logo">
+    {{@sys.createdby}}
+</div>
+
+<style>
+    .header {
+        background-image: url('{{pluResPath}}/rogue/tourn/simulated-s3-bg-top.e5a5b60a.webp');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        height: 220px;
+    }
+
+    .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("{{pluResPath}}/rogue/oblivious_bg@2x.7b5d7b38.png") no-repeat;
+        background-size: 100% auto;
+        filter: hue-rotate(280deg);
+        mix-blend-mode: screen;
+        background-color: #100A0E;
+        opacity: 0.9;
+        z-index: -1;
+    }
+</style>
+{{/block}}

@@ -113,6 +113,53 @@
     font-weight: bold;
 }
 
+/* 周期演算信息 */
+.weekly-info {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.weekly-name {
+    color: #ecd381;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.weekly-buffs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.weekly-buff-item {
+    display: flex;
+    align-items: flex-start;
+    background: rgba(230, 230, 228, 0.1);
+    border-radius: 5px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.weekly-buff-icon {
+    width: 6px;
+    height: 6px;
+    background: #ecd381;
+    border-radius: 50%;
+    margin-top: 8px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.weekly-buff-desc {
+    color: #cacaca;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
 .buff-list {
     display: flex;
     flex-wrap: wrap;
