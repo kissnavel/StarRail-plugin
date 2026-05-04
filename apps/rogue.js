@@ -37,13 +37,9 @@ export class Rogue extends plugin {
           fnc: 'rogue_tourn'
         },
         {
-          reg: `^${rulePrefix}常规(差分(宇宙)?|演算)(一|二|三)?`,
+          reg: `^${rulePrefix}常规(差分(宇宙)?|演算)(战绩|回顾)?(一|二|三)?`,
           fnc: 'rogue_tourn_normal'
-        },
-        {
-          reg: `^${rulePrefix}(货币战争|货币)`,
-          fnc: 'grid_fight'
-        },
+        }
       ]
     })
     this.User = new User(e)
@@ -299,7 +295,8 @@ export class Rogue extends plugin {
       uid,
       role: data.role,
       basic: data.basic,
-      record: record
+      record: record,
+      index_of_archive: `${index} / ${data.normal_detail.records.length}`
     }
 
     // 格式化时间

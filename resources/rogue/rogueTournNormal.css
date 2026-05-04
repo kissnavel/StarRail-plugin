@@ -94,6 +94,14 @@
     border-bottom: 1px solid rgba(201, 202, 207, 0.2);
 }
 
+.section-header-title {
+    padding: 10px 10px 5px 10px;
+    color: #ecd381;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
 .section-title {
     color: #cacaca;
     font-size: 18px;

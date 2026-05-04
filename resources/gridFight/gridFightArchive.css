@@ -24,7 +24,9 @@
     flex-direction: column;
 }
 
-.bond-info-item, .investment-strategy-item, .investment-environment-item {
+.bond-info-item,
+.investment-strategy-item,
+.investment-environment-item {
     width: calc(33.33% - 8px);
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 5px;
@@ -40,7 +42,14 @@
     padding: 12px 15px;
 }
 
-.bond-icon-container, .strategy-icon-container, .environment-icon-container {
+.section-header-title {
+    padding: 10px 10px 5px 10px;
+    text-align: center;
+}
+
+.bond-icon-container,
+.strategy-icon-container,
+.environment-icon-container {
     position: relative;
     width: 48px;
     height: 48px;
@@ -140,7 +149,8 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    min-height: 105px; /* Aligns with character card + equipment height */
+    min-height: 105px;
+    /* Aligns with character card + equipment height */
 }
 
 .damage-entity-container {
@@ -148,7 +158,8 @@
     height: 105px;
     display: flex;
     justify-content: center;
-    align-items: center; /* Center bond logo vertically */
+    align-items: center;
+    /* Center bond logo vertically */
     flex-shrink: 0;
 }
 
