@@ -1,0 +1,494 @@
+.container {
+    padding: 30px 30px 20px 20px;
+    width: 784px;
+    transform: none;
+    font-family: 'SR', serif;
+    position: relative;
+}
+
+.header-title {
+    font-family: 'SR', serif;
+    color: #ecd381;
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    padding-top: 20px;
+}
+
+.header-uid {
+    font-family: 'SR', serif;
+    color: #bba86a;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.header-content {
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 30px;
+    margin-right: 30px;
+    background: rgba(11, 12, 17, 0.5);
+    display: flex;
+}
+
+.header-content-block {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 33.33%;
+}
+
+.header-content-block-title {
+    padding-top: 10px;
+    text-align: center;
+    color: #cacaca;
+    font-size: 20px;
+}
+
+.header-content-block-value {
+    text-align: center;
+    color: #fdfdfd;
+    font-size: 28px;
+    height: 40px;
+}
+
+.star {
+    color: #ecd381;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.icon {
+    width: 26px;
+    height: 26px;
+    transform: scale(2.0);
+}
+
+.title {
+    color: #fdfdfd;
+    font-size: 28px;
+}
+
+.logo {
+    font-size: 16px;
+    font-family: "tttgbnumber";
+    color: #ecd381;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.section {
+    margin: 10px 10px;
+    background: rgba(11, 12, 17, 0.5);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(201, 202, 207, 0.2);
+}
+
+.section-title {
+    color: #cacaca;
+    font-size: 18px;
+}
+
+.section-value {
+    color: #ecd381;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.buff-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 5px 10px;
+}
+
+.buff-item {
+    display: flex;
+    align-items: center;
+    background: rgba(230, 230, 228, 0.1);
+    border-radius: 20px;
+    padding: 2px 10px 2px 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.buff-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+.buff-count {
+    color: #fdfdfd;
+    font-size: 16px;
+}
+
+.section-content {
+    padding-top: 5px;
+}
+
+/* 角色阵容 */
+.latest-team {
+    background: rgba(230, 230, 228, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.latest-team-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.latest-team-time {
+    color: #AAAAAA;
+    font-size: 12px;
+}
+
+.latest-team-stars {
+    color: #ecd381;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.latest-team-avatars {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.avatar-box {
+    margin: 3px 6px 6px 1px;
+}
+
+.avatar {
+    margin-top: 5px;
+    margin-left: 15px;
+    background: #cb9a6d;
+    width: 100px;
+    border-radius: 0 15px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.rarity5 {
+    background: linear-gradient(45deg, #c59a65, #894f4a);
+}
+
+.rarity4 {
+    background: linear-gradient(45deg, #7f54c0, #3d3d63);
+}
+
+.avatar-inner {
+    position: absolute;
+    left: 4px;
+    top: 3px;
+    border-radius: 0 15px 0 0;
+    border: #fffdfd48 3px solid;
+    width: 94px;
+    height: 100px;
+}
+
+.avatar .life {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 101;
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0px 3px;
+    border-radius: 3px;
+    font-family: "tttgbnumber";
+}
+
+.avatar-img {
+    width: 100px;
+    position: relative;
+    z-index: 100;
+}
+
+.avatar-banner {
+    position: absolute;
+    top: 95px;
+    background: black;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    z-index: 101;
+}
+
+.avatar-element {
+    --borderColor-fire: #c5523a;
+    --borderColor-ice: #4089bb;
+    --borderColor-imaginary: #f1d85e;
+    --borderColor-lightning: #a042be;
+    --borderColor-physical: #857f87;
+    --borderColor-quantum: #4b52a1;
+    --borderColor-wind: #349972;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    border: 1px solid;
+    z-index: 101;
+    background: black;
+    transform: rotate(45deg);
+    overflow: hidden;
+}
+
+.avatar-element img {
+    transform: rotate(-45deg);
+    width: 20px;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+}
+
+/* 开拓主轴 */
+.persona-content {
+    display: flex;
+    align-items: center;
+    background: rgba(230, 230, 228, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.persona-icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+}
+
+.persona-info {
+    flex: 1;
+}
+
+.persona-title {
+    color: #fdfdfd;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.persona-desc {
+    color: #cacaca;
+    font-size: 14px;
+}
+
+/* 方程式 一行6个 */
+/* 方程式背景 */
+.formula-cat-5 {
+    background: linear-gradient(180deg, #f9e694 0%, #d4a75b 100%) !important;
+    border: 1px solid #ffffff40 !important;
+}
+
+.formula-cat-5 .formula-name {
+    color: #333 !important;
+    font-weight: bold;
+}
+
+.formula-cat-4 {
+    background: linear-gradient(180deg, #d4a75b 0%, #a67c37 100%) !important;
+}
+
+.formula-cat-4 .formula-name {
+    color: #fff !important;
+}
+
+.formula-cat-3 {
+    background: linear-gradient(180deg, #bb8cf3 0%, #7f54c0 100%) !important;
+}
+
+.formula-cat-2 {
+    background: linear-gradient(180deg, #87ceeb 0%, #3498db 100%) !important;
+}
+
+/* 奇物背景 */
+.curio-rank-hex {
+    background: linear-gradient(180deg, #f9e694 0%, #d4a75b 100%) !important;
+    border: 1px solid #ffffff40 !important;
+}
+
+.curio-rank-4 {
+    background: linear-gradient(180deg, #f38c8c 0%, #c0392b 100%) !important;
+}
+
+.curio-rank-3 {
+    background: linear-gradient(180deg, #d4a75b 0%, #a67c37 100%) !important;
+}
+
+.curio-rank-2 {
+    background: linear-gradient(180deg, #87ceeb 0%, #3498db 100%) !important;
+}
+
+.curio-rank-1 {
+    background: linear-gradient(180deg, #cccccc 0%, #7f8c8d 100%) !important;
+}
+
+.formula-list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.formula-item {
+    background: rgba(230, 230, 228, 0.1);
+    border-radius: 8px;
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.formula-icons {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+.formula-icons.no-sub {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formula-icons.no-sub .formula-icon-main {
+    transform: scale(1.5);
+}
+
+.formula-icon-main {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.formula-icon-sub {
+    position: absolute;
+    bottom: 5px;
+    right: -5px;
+    width: 25px;
+    height: 25px;
+    z-index: 2;
+}
+
+.formula-name {
+    color: #fdfdfd;
+    font-size: 12px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+/* 奇物和区域 一行8个 */
+.item-grid-8 {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+}
+
+.curio-item {
+    background: rgba(230, 230, 228, 0.1);
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.curio-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.room-item {
+    border-radius: 8px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    aspect-ratio: 1;
+    justify-content: center;
+}
+
+.bg-color-1 {
+    background: rgba(187, 46, 73, 0.3);
+    border: 1px solid #dc3c5a;
+}
+
+.bg-color-2 {
+    background: rgba(51, 146, 195, 0.3);
+    border: 1px solid #3ca5dc;
+}
+
+.bg-color-3 {
+    background: rgba(233, 103, 175, 0.3);
+    border: 1px solid #ff6cb1;
+}
+
+.bg-color-4 {
+    background: rgba(195, 146, 51, 0.3);
+    border: 1px solid #c39233;
+}
+
+.bg-color-5 {
+    background: rgba(123, 82, 197, 0.3);
+    border: 1px solid #9060e7;
+}
+
+.bg-color-6 {
+    background: rgba(133, 133, 133, 0.3);
+    border: 1px solid #9c9c9c;
+}
+
+.room-icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 2px;
+}
+
+.room-name {
+    color: #fdfdfd;
+    font-size: 10px;
+    text-align: center;
+    transform: scale(0.9);
+}
+
+.room-level {
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    color: #ecd381;
+    font-size: 10px;
+    transform: scale(0.8);
+}
+
+.star {
+    color: #ecd381;
+    font-weight: bold;
+}

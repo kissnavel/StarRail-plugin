@@ -37,6 +37,10 @@ export class Rogue extends plugin {
           fnc: 'rogue_tourn'
         },
         {
+          reg: `^${rulePrefix}常规(差分(宇宙)?|演算)(一|二|三)?`,
+          fnc: 'rogue_tourn_normal'
+        },
+        {
           reg: `^${rulePrefix}(货币战争|货币)`,
           fnc: 'grid_fight'
         },
@@ -230,6 +234,85 @@ export class Rogue extends plugin {
     }
     
     await runtimeRender(e, '/rogue/rogueTourn.html', data, {
+      scale: 1.4
+    })
+  }
+
+  async rogue_tourn_normal (e) {
+    this.e.isSr = true
+    this.isSr = true
+    let user = this.e.user_id
+    let ats = e.message.filter(m => m.type === 'at')
+    if (ats.length > 0 && !e.atBot) {
+      user = ats[0].qq
+      this.e.user_id = user
+      this.User = new User(this.e)
+    }
+    let uid = e.msg.match(/\d+/)?.[0]
+    await this.miYoSummerGetUid()
+    uid = uid || (await redis.get(`STAR_RAILWAY:UID:${user}`)) || this.e.user?.getUid('sr')
+    if (!uid) {
+      return e.reply('未绑定uid，请发送#星铁绑定uid进行绑定')
+    }
+    let ck = await getCk(e)
+    if (!ck || Object.keys(ck).filter(k => ck[k].ck).length === 0) {
+      let ckArr = GsCfg.getConfig('mys', 'pubCk') || []
+      ck = ckArr[0]
+    }
+    if (!ck) {
+      await e.reply(`尚未绑定Cookie,${this.app2config.docs}`)
+      return false
+    }
+
+    let indexMap = { 一: 1, 二: 2, 三: 3 }
+    let indexStr = e.msg.match(/(一|二|三)$/)?.[0]
+    let index = indexMap[indexStr] || 1
+
+    let api = new MysSRApi(uid, ck)
+    let sdk = api.getUrl('getFp')
+    let fpRes = await fetch(sdk.url, { headers: sdk.headers, method: 'POST', body: sdk.body })
+    fpRes = await fpRes.json()
+    let deviceFp = fpRes?.data?.device_fp
+    if (deviceFp) {
+      await redis.set(`STARRAIL:DEVICE_FP:${uid}`, deviceFp, { EX: 86400 * 7 })
+    }
+    const { url, headers } = api.getUrl('srRogueTourn', { deviceFp })
+    delete headers['x-rpc-page']
+    logger.debug({ url, headers })
+    let res = await fetch(url, {
+      headers
+    })
+
+    let cardData = await res.json()
+    cardData = await api.checkCode(this.e, cardData, 'srRogueTourn', { deviceFp })
+    if (cardData.retcode !== 0) {
+      return false
+    }
+
+    let data = cardData.data
+    if (!data.normal_detail?.records || data.normal_detail.records.length < index) {
+      return e.reply(`未找到差分宇宙·常规演算第${index}条记录`)
+    }
+
+    let record = data.normal_detail.records[index - 1]
+    let renderData = {
+      uid,
+      role: data.role,
+      basic: data.basic,
+      record: record
+    }
+
+    // 格式化时间
+    renderData.record.format_finish_time = this.formatTime(renderData.record.finish_time)
+
+    // 计算祝福总数
+    let buffs_count = 0
+    renderData.record.buffs.forEach(group => {
+      buffs_count += group.items.length
+    })
+    renderData.buffs_count = buffs_count
+
+    await runtimeRender(e, '/rogue/rogueTournNormal.html', renderData, {
       scale: 1.4
     })
   }

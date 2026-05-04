@@ -46,6 +46,10 @@ export const helpList = [
         desc: '模拟宇宙信息(可带uid查询)'
       }, {
         icon: 107,
+        title: '*常规差分(一|二|三)?',
+        desc: '常规演算最近三场记录'
+      }, {
+        icon: 107,
         title: '*寰宇蝗灾',
         desc: '模拟宇宙寰宇蝗灾信息'
       }, {
@@ -128,7 +132,7 @@ export const helpList = [
       }, {
         icon: 98,
         title: '*预估',
-        desc: '预估当前版本或下版本星琼'
+        desc: '预估当前版本 or 下版本星琼'
       }, {
         icon: 104,
         title: '*xx参考面板(帮助)',
