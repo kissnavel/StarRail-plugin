@@ -41,18 +41,6 @@ export const helpList = [
         title: '*希儿面板(uid)',
         desc: '星铁角色面板详情'
       }, {
-        icon: 107,
-        title: '*(上期)宇宙(uid)',
-        desc: '模拟宇宙信息(可带uid查询)'
-      }, {
-        icon: 107,
-        title: '*常规差分(一|二|三)?',
-        desc: '常规演算最近三场记录'
-      }, {
-        icon: 107,
-        title: '*寰宇蝗灾',
-        desc: '模拟宇宙寰宇蝗灾信息'
-      }, {
         icon: 98,
         title: '*收入',
         desc: '月度星琼统计'
@@ -64,6 +52,48 @@ export const helpList = [
         icon: 75,
         title: '*卡片',
         desc: '角色卡片(仅支持绑定ck查询)'
+      }, {
+        icon: 91,
+        title: '*在线时长',
+        desc: '根据体力数据统计在线时长'
+      }, {
+        icon: 97,
+        title: '*抽卡帮助',
+        desc: '绑定抽卡链接教程'
+      }, {
+        icon: 97,
+        title: '*抽卡链接',
+        desc: '绑定星铁抽卡链接'
+      }, {
+        icon: 97,
+        title: '*更新跃迁/抽卡',
+        desc: '更新本地抽卡记录'
+      }, {
+        icon: 97,
+        title: '*跃迁分析(角色|光锥|常驻)',
+        desc: '抽卡分析默认为总览'
+      }
+    ]
+  },
+  {
+    group: '星铁挑战信息(支持#星铁,*前缀)',
+    list: [
+      {
+        icon: 107,
+        title: '*(上期)宇宙(uid)',
+        desc: '模拟宇宙信息(可带uid查询)'
+      }, {
+        icon: 107,
+        title: '*常规差分(一|二|三)?',
+        desc: '常规演算最近三场记录'
+      }, {
+        icon: 107,
+        title: '*货币战争',
+        desc: '货币战争信息'
+      }, {
+        icon: 107,
+        title: '*寰宇蝗灾',
+        desc: '模拟宇宙寰宇蝗灾信息'
       }, {
         icon: 110,
         title: '*(上期|本期)?(简易)?忘却',
@@ -88,26 +118,6 @@ export const helpList = [
         icon: 110,
         title: '*(最新|当期)(简易)?深渊',
         desc: '当期深渊信息'
-      }, {
-        icon: 91,
-        title: '*在线时长',
-        desc: '根据体力数据统计在线时长'
-      }, {
-        icon: 97,
-        title: '*抽卡帮助',
-        desc: '绑定抽卡链接教程'
-      }, {
-        icon: 97,
-        title: '*抽卡链接',
-        desc: '绑定星铁抽卡链接'
-      }, {
-        icon: 97,
-        title: '*更新跃迁/抽卡',
-        desc: '更新本地抽卡记录'
-      }, {
-        icon: 97,
-        title: '*跃迁分析(角色|光锥|常驻)',
-        desc: '抽卡分析默认为总览'
       }
     ]
   }, {
