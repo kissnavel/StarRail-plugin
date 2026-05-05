@@ -116,14 +116,13 @@
 .chess-equipments {
     display: flex;
     justify-content: center;
-    gap: 2px;
     width: 72px;
     min-height: 18px;
 }
 
 .equip-icon-box {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     background: #131522;
     border: 1px solid #2f2d2a;
     display: flex;
