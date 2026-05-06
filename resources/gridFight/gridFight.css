@@ -290,10 +290,16 @@
     background: linear-gradient(180deg, #7f54c0 0%, #3d3d63 100%);
 }
 
-.chess-box[data-rarity="1"],
-.chess-box[data-rarity="2"],
 .chess-box[data-rarity="3"] .chess-main {
-    background: linear-gradient(180deg, #5c5c5c 0%, #2a2a2a 100%);
+    background: linear-gradient(180deg, #4480c4 0%, #2a4d7d 100%);
+}
+
+.chess-box[data-rarity="2"] .chess-main {
+    background: linear-gradient(180deg, #51a55b 0%, #2f5e35 100%);
+}
+
+.chess-box[data-rarity="1"] .chess-main {
+    background: linear-gradient(180deg, #b3b3b3 0%, #5c5c5c 100%);
 }
 
 .chess-img {
@@ -342,10 +348,16 @@
     background-color: #7f54c0;
 }
 
-.chess-box[data-rarity="1"],
-.chess-box[data-rarity="2"],
 .chess-box[data-rarity="3"] .chess-bar {
-    background-color: #5c5c5c;
+    background-color: #4480c4;
+}
+
+.chess-box[data-rarity="2"] .chess-bar {
+    background-color: #51a55b;
+}
+
+.chess-box[data-rarity="1"] .chess-bar {
+    background-color: #b3b3b3;
 }
 
 .logo {
