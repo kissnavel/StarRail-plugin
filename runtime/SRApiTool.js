@@ -34,7 +34,7 @@ export default class SRApiTool {
       hostPublicData = 'https://public-data-api.mihoyo.com/'
     } else if (/official/.test(this.server)) {
       host = 'https://sg-public-api.hoyolab.com/'
-      hostRecord = 'https://bbs-api-os.hoyolab.com/'
+      hostRecord = 'https://sg-act-public-api.hoyolab.com/'
       hostPublicData = 'https://sg-public-data-api.hoyoverse.com/'
     }
     let urlMap = {
@@ -59,7 +59,7 @@ export default class SRApiTool {
             noDs: true
           },
           sign_info: {
-            url: `${host}event/luna/info`,
+            url: `${host}event/luna/hkrpg/info`,
             query: `lang=zh-cn&act_id=e202304121516551&region=${this.server}&uid=${this.uid}`,
             dsSalt: 'web'
           }
@@ -83,7 +83,7 @@ export default class SRApiTool {
             noDs: true
           },
           sign_info: {
-            url: `${host}event/luna/os/info`,
+            url: `${host}event/luna/hkrpg/os/info`,
             query: 'lang=zh-cn&act_id=e202303301540311',
             dsSalt: 'web'
           }
